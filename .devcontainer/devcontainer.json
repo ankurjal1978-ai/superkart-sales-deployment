@@ -1,9 +1,6 @@
 {
   "name": "SuperKart Model Deployment",
   "image": "mcr.microsoft.com/devcontainers/python:1-3.11-bookworm",
-  "features": {
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
-  },
   "forwardPorts": [7860, 8501],
   "portsAttributes": {
     "7860": {
@@ -15,6 +12,6 @@
       "onAutoForward": "openPreview"
     }
   },
-  "postCreateCommand": "docker compose build",
-  "postStartCommand": "docker compose up -d"
+  "postCreateCommand": "pip install --user -r backend/requirements.txt -r frontend/requirements.txt && python backend/train_model.py",
+  "postStartCommand": "bash .devcontainer/start.sh"
 }
